@@ -1,0 +1,76 @@
+{
+	"origin_data": "./data/PON-Sol_data - YSD=0.15.xlsx", 
+	"yeast_lgk": "./data/yeast_lgk.csv",
+	"yeast_tem": "./data/yeast_tem.csv",
+	"genes_seq": "./data/all_genes.csv", 
+	"aaindex": "./data/aaindexmatrix.txt", 
+	"sift_result": "./data/sift_data/result1_90_100/sift_result", 
+	"sift_aligedfasta": "./data/sift_data/result1_90_100",
+	"all_feature": "./data/all_feature.csv",
+	"feature_kind": "./data/features_kind.xls",
+	"feature_selected_dir": "./data/result/feature selected/", 
+	"feature_selected": 
+	{
+		"RandomForeast": "./out/20201224/10cv_3class_feature_select_RandomForeast.rfecv",
+		"XGBoost" : "./out/20201224/10cv_3class_feature_select_XGBoost.rfecv", 
+        
+		"lightGBM": "./out/20210108/10cv_3class_feature_select_LightGBM.rfecv",
+		"lightGBM_layer1_-1": "./out/20210106/lightGBM_feature_select_for_-1_layer1.rfecv",
+		"lightGBM_layer2_-1": "./out/20210106/lightGBM_feature_select_for_-1_layer2.rfecv",
+
+		"RandomForeast_rfe_30": "./out/20201226/10cv_3class_feature_select_RandomForeast_30.rfe",
+		"XGBoost_rfe_30": "./out/20201226/10cv_3class_feature_select_XGBoost_30.rfe",
+        
+		"LightGBM_rfe_20": "./out/20210203/10cv_3class_feature_select_LightGBM_direct_20.rfe",
+		"LightGBM_rfe_30": "./out/20210108/10cv_3class_feature_select_LightGBM_30.rfe",
+		"LightGBM_rfe_50": "./out/20210203/10cv_3class_feature_select_LightGBM_direct_50.rfe",
+		"LightGBM_rfe_100": "./out/20210203/10cv_3class_feature_select_LightGBM_direct_100.rfe",
+
+        
+		"lightGBM_layer1_-1_ref_30":"./out/20210106/lightGBM_feature_select_for_-1_layer1_30_features.rfe", 
+		"lightGBM_layer2_-1_ref_30":"./out/20210106/lightGBM_feature_select_for_-1_layer2_30_features.rfe", 
+		"lightGBM_layer1_-1_ref_100":"./out/20210203/lightGBM_feature_select_for_-1_layer1_100_features.rfe", 
+		"lightGBM_layer2_-1_ref_100":"./out/20210203/lightGBM_feature_select_for_-1_layer2_100_features.rfe", 
+		"lightGBM_layer1_-1_ref_50":"./out/20210203/lightGBM_feature_select_for_-1_layer1_50_features.rfe", 
+		"lightGBM_layer2_-1_ref_50":"./out/20210203/lightGBM_feature_select_for_-1_layer2_50_features.rfe", 
+		"lightGBM_layer1_-1_ref_20":"./out/20210203/lightGBM_feature_select_for_-1_layer1_20_features.rfe", 
+		"lightGBM_layer2_-1_ref_20":"./out/20210203/lightGBM_feature_select_for_-1_layer2_20_features.rfe"
+	}, 
+	"feature_selected_special": 
+	{
+        "lightGBM_ref_specia-l_layer1":["lightGBM_layer1_-1_ref_30", "./out/20210108/lightGBM_feature_select_for_-1_layer1_20_features.rfe"] , 
+        "lightGBM_ref_specia-l_layer2":["lightGBM_layer2_-1_ref_30", "./out/20210108/lightGBM_feature_select_for_-1_layer2_20_features.rfe"]  
+	},
+	"result":
+	[
+		"./data/result/rfecv_res/10cv_3class_res.xlsx",
+		"./data/result/rfecv_res/10cv_3class_feature_select_res.xlsx",
+		"./data/result/rfecv_res/10cv_3class_newDataBalance_res.xlsx",
+		"./data/result/rfecv_res/10cv_3class_newDataBalance_comparsion_of_data_method_res.xlsx",
+		"./data/result/rfecv_res/10cv_3class_2layer_res.xlsx", 
+
+		"./data/result/rfe_res/10cv_3class_res_RandomForeast_rfe_feature_select_res.xlsx", 
+		"./data/result/rfe_res/10cv_3class_res_LightGBM_rfe_feature_select_res.xlsx", 
+		"./data/result/rfe_res/10cv_3class_res_XGBoost_rfe_feature_select_res.xlsx", 
+		"./data/result/rfe_res/10cv_3class_2layer_rfe_res.xlsx" 
+	],
+	"result_balanced":
+	[
+		"./data/result/rfecv_res/10cv_3class_res_balanced.xlsx",
+		"./data/result/rfecv_res/10cv_3class_feature_select_res_balanced.xlsx",
+		"./data/result/rfecv_res/10cv_3class_newDataBalance_comparsion_of_data_method_res_balanced.xlsx",
+		"./data/result/rfecv_res/10cv_3class_2layer_res_balanced.xlsx", 
+
+		"./data/result/rfe_res/10cv_3class_res_RandomForeast_rfe_feature_select_res_balanced.xlsx", 
+		"./data/result/rfe_res/10cv_3class_res_LightGBM_rfe_feature_select_res_balanced.xlsx", 
+		"./data/result/rfe_res/10cv_3class_res_XGBoost_rfe_feature_select_res_balanced.xlsx" , 
+		"./data/result/rfe_res/10cv_3class_2layer_rfe_res_balanced.xlsx" 
+	], 
+    "result_finally":
+    [
+        "./out/20210121/10cv_3class_finally_res.xlsx", 
+        "./out/20210121/10cv_3class_finally_res_balanced.xlsx"
+    ],
+    "BTK": "./out/BTK.faste",
+    "final_model": "./out/20210214/2layer_rfe_20_20.model"
+}
