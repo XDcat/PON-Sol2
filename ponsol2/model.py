@@ -17,12 +17,11 @@ class PonSol2:
     def __init__(self):
         """
         model
-        self.Estimator: 使用的训练器模型
-        self.kwargs: 模型参数
-        self.feature_selected: 使用到的特征的列表，具体还是看 fs1 和 fs2
-        self.special_kind: 划分第一层的特殊类
-        self.fs1: 第一层使用的特征
-        self.fs2: 第二层使用的特征
+        self.Estimator: model
+        self.kwargs: args of model
+        self.special_kind: the special classes that divide the first layer
+        self.fs1: feature of layer1
+        self.fs2: feature of layer2
 
         """
         self.model_path = config.model_path
@@ -31,23 +30,21 @@ class PonSol2:
         self.fs2 = self.model.fs2
 
     def check_X(self, X):
-        # 检查类型
         if not isinstance(X, pd.DataFrame):
             raise RuntimeError("The input is not the object of pandas.DataFrame")
-        # 检查特征
         all_features = set(self.fs1.to_list() + self.fs2.to_list())
         input_data_features = set(X.columns.to_list())
         reduce_features = all_features - input_data_features
         if len(reduce_features) > 0:
-            raise RuntimeError("缺少特征:%s" % reduce_features)
+            raise RuntimeError("lack feature:%s" % reduce_features)
         return True
 
     def predict(self, seq, aa):
         """
         预测
-        :param seq: 氨基酸序列，不包含名称
-        :param aa: 变异，索引从1开始，e.g. A1B
-        :return: 预测结果
+        :param seq: FASTA sequence without name
+        :param aa: e.g. A1B
+        :return: result
         """
         all_features = feature_extraction.get_all_features(seq, aa)
         if aa[0] == aa[-1]:
@@ -57,7 +54,6 @@ class PonSol2:
 
 
     def _predict(self, X):
-        # 检查 X
         self.check_X(X)
         pred = self.model.predict(X)
         return pred

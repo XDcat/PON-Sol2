@@ -1,13 +1,4 @@
 # -*- coding:utf-8 -*-
-'''
-__author__ = 'XD'
-__mtime__ = 2021/1/18
-__project__ = Pon-Sol2
-Fix the Problem, Not the Blame.
-'''
-# -*- coding:utf-8 -*-
-# 文件写法参考：https://github.com/dls-controls/python-logging-configuration/blob/master/logconfig.py
-# 具体配置自写
 import json
 import yaml
 import logging
@@ -15,10 +6,10 @@ import logging.config
 import os
 
 default_config = {
-    "version": 1,  # 目前只有 1 有效，用于以后兼容性
-    "incremental": False,  # 是否在运行中时修改配置, 默认 False
-    "disable_existing_loggers": True,  # 是否禁用任何非根的所有 Logger, 默认 False
-    "formatters": {  # 格式化生成器(格式器)
+    "version": 1, 
+    "incremental": False,  
+    "disable_existing_loggers": True,  
+    "formatters": {  
         "default": {
             "format": "%(name)s %(asctime)s [%(filename)s %(funcName)s()] <%(levelname)s>: %(message)s",
         },
@@ -26,39 +17,34 @@ default_config = {
             "format": "%(name)s [%(funcName)s()] <%(levelname)s>: %(message)s",
         }
     },
-    "filters": {},  # 过滤器，需要自定义类，一般不会用到
+    "filters": {},  
     "handlers": {
-        "console": {  # 控制台
+        "console": {  
             "class": "logging.StreamHandler",
             "formatter": "brief",
             "level": "DEBUG",
             "stream": "ext://sys.stdout",
         },
-        "file_debug": {  # 输出到文件
+        "file_detail": {  
             "class": "logging.handlers.RotatingFileHandler",
             "formatter": "default",
             "level": "DEBUG",
-            "filename": "ponsol2_predictor_debug.log",  # 必选, 文件名称
+            "filename": "detail_logger.log",  
             "encoding": "utf8",
-            "maxBytes": 10485760,  # 日志文件最大个数 1024B * 1024 * 10 = 10MB
-            "backupCount": 10,  # 日志文件最大个数
-        },
-        "file_info": {  # 输出到文件
-            "class": "logging.handlers.RotatingFileHandler",
-            "formatter": "default",
-            "level": "INFO",
-            "filename": "ponsol2_predictor_info.log",  # 必选, 文件名称
-            "encoding": "utf8",
-            "maxBytes": 10485760,  # 日志文件最大个数 1024B * 1024 * 10 = 10MB
-            "backupCount": 10,  # 日志文件最大个数
-        },
+            "maxBytes": 10485760,  
+            "backupCount": 10,  
+        }
     },
     "loggers": {
-        "ponsol": {
+        "simple": {
             "level": "DEBUG",
-            "handlers": ["file_debug", "file_info"],
-            "propagate": False,  # 是否传给父级
+            "handlers": ["console", "file_detail"],
+            "propagate": False,  
         }
+    },
+    "root": {
+        "level": "DEBUG",
+        "handlers": ["console", "file_detail"],
     },
 }
 
@@ -69,23 +55,6 @@ def setup_logging(
         default_level=logging.INFO,
         env_key='LOG_CFG',
 ):
-    """Setup logging configuration
-    Call this only once from the application main() function or __main__ module!
-    This will configure the python logging module based on a logging configuration
-    in the following order of priority:
-       1. Log configuration file found in the environment variable specified in the `env_key` argument.
-       2. Log configuration file found in the `default_log_config` argument.
-       3. Default log configuration found in the `logconfig.default_config` dict.
-       4. If all of the above fails: basicConfig is called with the `default_level` argument.
-    Args:
-        default_log_config (Optional[str]): Path to log configuration file.
-        env_key (Optional[str]): Environment variable that can optionally contain
-            a path to a configuration file.
-        default_level (int): logging level to set as default. Ignored if a log
-            configuration is found elsewhere.
-        is_yaml (bool): weather config file is a yaml file
-    Returns: None
-    """
     dict_config = None
     logconfig_filename = default_log_config
     env_var_value = os.getenv(env_key, None)
@@ -114,3 +83,4 @@ def setup_logging(
 if __name__ == '__main__':
     with open("./logconfig.yaml", "w") as f:
         yaml.dump(default_config, f)
+

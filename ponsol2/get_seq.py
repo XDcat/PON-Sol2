@@ -27,11 +27,6 @@ def get_seq_by_id(ids, type):
 
 
 def get_seq_from_ensembl(ensembl_id):
-    """
-    将 ensembl id 转化为 uniprot id, 然后通过 uniprot id 获取序列
-    :param ensembl_id:
-    :return:
-    """
     mg = mygene.MyGeneInfo()
     xli = [ensembl_id, ]
     out = mg.querymany(xli, scopes="ensembl.gene", fields="uniprot", species="human")
@@ -59,11 +54,6 @@ def get_seq_from_uniprot(uniprot_id):
 
 
 def get_seq_from_gi(gi):
-    """
-    通过 genebank 获取序列
-    :param gb_id: genebank id
-    :return:
-    """
     url = "https://www.ncbi.nlm.nih.gov/sviewer/viewer.fcgi?id={}&db=protein&report=fasta&retmode=text&withmarkup=on&tool=portal&log$=seqview&maxdownloadsize=1000000".format(
         gi.upper())
     try:

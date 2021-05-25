@@ -50,7 +50,6 @@ def get_neighborhood_features(seq, aa):
     seq, aaf, aat, aai = check_aa(seq, aa)
 
     def find_win(seq, aai):
-        # 确定边界
         index = aai - 1
         front = 0 if index - 11 < 0 else index - 11
         after = len(seq) if index + 12 > len(seq) - 1 else index + 12
@@ -60,7 +59,7 @@ def get_neighborhood_features(seq, aa):
         """ count number of aa in windows"""
         a_dict = defaultdict(int)
         for i in win:
-            a_dict[i] += 1  # 递增
+            a_dict[i] += 1 
         return {'AA20D.' + i: a_dict[i] for i in a_list}
 
     win = find_win(seq, aai)
